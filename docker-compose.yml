@@ -5,11 +5,11 @@ services:
     image: ghcr.io/berriai/litellm:main-stable
 
     volumes:
-      - litellm_config:/app/config
-      - postgres_data:/var/lib/postgresql/data
+      - /data/coolify/applications/ug4cc4kw8g8k4ssws84w8kwk/config.yaml:/app/config.yaml
+      - /data/coolify/applications/ug4cc4kw8g8k4ssws84w8kwk/proxy.py:/app/proxy.py
 
     command:
-      - "--config=/app/config/config.yaml"
+      - "--config=/app/config.yaml"
 
     ports:
       - "4050:4000"
@@ -34,11 +34,12 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
 
+    ports:
+      - "6448:5432"
+
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
 volumes:
-  litellm_config:
-    external: true   # Coolify volume you will create
   postgres_data:
     name: litellm_postgres_data
