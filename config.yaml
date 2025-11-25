@@ -1,0 +1,9 @@
+model_list:
+  - model_name: gpt-main
+    litellm_params:
+      model: openai/gpt-4o-mini
+      api_key: ${OPENAI_API_KEY}
+
+general_settings:
+  proxy_middleware:
+    - path: /app/proxy.py
